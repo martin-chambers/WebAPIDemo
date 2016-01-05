@@ -52,7 +52,7 @@ namespace WebApiDemo.Controllers
             }            
         }
 
-        // POST api/values/
+        // POST api/values/ (+payload)
         [System.Web.Http.HttpPost]
         public async Task<HttpResponseMessage> Insert([FromBody]Value value)
         {
@@ -73,9 +73,35 @@ namespace WebApiDemo.Controllers
             }
         }
 
-        // PUT api/values/568b9cbefbfd383c642a6dde/
-        public void Put(int id, [FromBody]string value)
+        // PUT api/values/ (+payload)
+        [System.Web.Http.HttpPut]
+        public async Task<HttpResponseMessage> Update([FromBody]Value value)
         {
+            Task<long> updateResult = repository.UpdateValue(value);            
+            try
+            {
+                await updateResult;
+                if(updateResult.Result < 1)
+                {
+                    Console.WriteLine("No documents matched update query");
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    if(updateResult.Result > 1)
+                    {
+                        // should not happen: Ids are unique
+                        Console.WriteLine("More than one document matched update query");
+                        return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                    }
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, value);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
         }
 
         // DELETE api/values/568b9cbefbfd383c642a6dde/
@@ -88,8 +114,22 @@ namespace WebApiDemo.Controllers
             }           
             try
             {
-                Task deleteResult = repository.RemoveValue(id);
+                Task<long> deleteResult = repository.RemoveValue(id);
                 await deleteResult;
+                if (deleteResult.Result < 1)
+                {
+                    Console.WriteLine("No documents matched delete query");
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    if (deleteResult.Result > 1)
+                    {
+                        // should not happen: Ids are unique
+                        Console.WriteLine("More than one document matched delete query");
+                        return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                    }
+                }
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)

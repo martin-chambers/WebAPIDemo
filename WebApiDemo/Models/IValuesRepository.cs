@@ -13,7 +13,7 @@ namespace WebApiDemo.Models
         Task<IEnumerable<Value>> GetAllValuesAsync();
         Task<Value> GetValueAsync(string Id);
         Task AddValueAsync(Value item);
-        Task<DeleteResult> RemoveValue(string Id);
-        bool UpdateValue(string Id, Value item);
+        Task<long> RemoveValue(string Id);
+        Task<long> UpdateValue(Value item);
     }
 }

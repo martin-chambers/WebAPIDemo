@@ -43,14 +43,29 @@ namespace WebApiDemo.Models
             Value rv = await values.Find(filter).FirstAsync();
             return rv;
         }
-        public async Task<DeleteResult> RemoveValue(string Id)
+        public async Task<long> RemoveValue(string Id)
         {
             var filter = Builders<Value>.Filter.Eq("Id", Id);
-            return await values.DeleteOneAsync(filter);            
+            Task<DeleteResult> deleteResult = values.DeleteOneAsync(filter);
+            await deleteResult;
+            long matchedCount = deleteResult.Result.DeletedCount;
+            return matchedCount;
         }
-        public bool UpdateValue(string Id, Value item)
+        /// <summary>
+        /// updates the document by matching Id
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>Number of documents matched. Should be maximum 1 - if the document was found</returns>
+        public async Task<long> UpdateValue(Value item)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Value>.Filter.Eq("Id", item.Id);
+            var update = Builders<Value>.Update
+                .Set("Name", item.Name)
+                .Set("Age", item.Age);
+            Task<UpdateResult> updateResult = values.UpdateOneAsync(filter, update);
+            await updateResult;
+            long matchedCount = updateResult.Result.MatchedCount;
+            return matchedCount;
         }
     }
 }
