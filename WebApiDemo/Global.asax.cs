@@ -4,6 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
+using SimpleInjector;
+using SimpleInjector.Integration.Web.Mvc;
+
+
+
+using WebApiDemo.Models;
 
 namespace WebApiDemo
 {
@@ -12,6 +18,12 @@ namespace WebApiDemo
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            //var container = new Container();
+            //container.Register<IValuesRepository, ValuesRepository>(Lifestyle.Transient);
+
+            //DependencyResolver.SetResolver(
+                //new SimpleInjectorDependencyResolver(container));
+
         }
     }
 }

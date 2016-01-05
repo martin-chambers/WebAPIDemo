@@ -5,26 +5,31 @@ using System.Web;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace WebApiDemo.Models
 {
     public class ValuesRepository : IValuesRepository
     {
-        string server;
         MongoClient client;
         IMongoDatabase database;
         IMongoCollection<Value> values;
-        
-        public ValuesRepository(string connection)
+
+        // useful resources:
+        // http://mongodb.github.io/mongo-csharp-driver/2.0/getting_started/quick_tour/
+        // http://dotnetcodr.com/data-storage/
+
+        public ValuesRepository()
         {
+            string connection = ConfigurationManager.ConnectionStrings["MongoDB"].ConnectionString;
             client = new MongoClient(connection);
-            database = client.GetDatabase("Values");
-            values = database.GetCollection<Value>("Values");
+            database = client.GetDatabase("testDB");
+            values = database.GetCollection<Value>("values");
         }
-        public async void AddValueAsync(Value item)
+        public async Task AddValueAsync(Value item)
         {
-            item.Id = MongoDB.Bson.ObjectId.GenerateNewId();
-            await values.InsertOneAsync(item);                              
+            item.Id = MongoDB.Bson.ObjectId.GenerateNewId().ToString();            
+            await values.InsertOneAsync(item);            
         }
 
         public async Task<IEnumerable<Value>> GetAllValuesAsync()
@@ -32,21 +37,16 @@ namespace WebApiDemo.Models
             List<Value> valueList = await values.Find(new BsonDocument()).ToListAsync();
             return valueList;            
         }
-
-        // not sure if the filter definition is set up correctly!!
-        // http://mongodb.github.io/mongo-csharp-driver/2.0/getting_started/quick_tour/
         public async Task<Value> GetValueAsync(string Id)
         {
-            FilterDefinition<Value> filter = "{Id: '" + Id + "'}"; // ?????????????????????? (worth a try!!)
-            Value rv = await values.Find<Value>(new BsonDocument()).FirstAsync();
+            var filter = Builders<Value>.Filter.Eq("Id", Id);
+            Value rv = await values.Find(filter).FirstAsync();
             return rv;
         }
-
         public bool RemoveValue(string Id)
         {
             throw new NotImplementedException();
         }
-
         public bool UpdateValue(string Id, Value item)
         {
             throw new NotImplementedException();
