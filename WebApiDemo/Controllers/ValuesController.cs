@@ -56,18 +56,21 @@ namespace WebApiDemo.Controllers
         [System.Web.Http.HttpPost]
         public async Task<HttpResponseMessage> Insert([FromBody]Value value)
         {
+            if (value == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
             Task task = repository.AddValueAsync(value);
             try
             {
                 await task;
                 return Request.CreateResponse(HttpStatusCode.Created, value);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
-            
         }
 
         // PUT api/values/568b9cbefbfd383c642a6dde/
@@ -75,9 +78,25 @@ namespace WebApiDemo.Controllers
         {
         }
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+        // DELETE api/values/568b9cbefbfd383c642a6dde/
+        [System.Web.Http.HttpDelete]
+        public async Task<HttpResponseMessage> Delete(string id)
+        { 
+            if(id == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }           
+            try
+            {
+                Task deleteResult = repository.RemoveValue(id);
+                await deleteResult;
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
         }
     }
 }

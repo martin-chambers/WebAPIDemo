@@ -43,9 +43,10 @@ namespace WebApiDemo.Models
             Value rv = await values.Find(filter).FirstAsync();
             return rv;
         }
-        public bool RemoveValue(string Id)
+        public async Task<DeleteResult> RemoveValue(string Id)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Value>.Filter.Eq("Id", Id);
+            return await values.DeleteOneAsync(filter);            
         }
         public bool UpdateValue(string Id, Value item)
         {
