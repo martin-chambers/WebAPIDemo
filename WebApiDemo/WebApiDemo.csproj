@@ -28,6 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\WebApiDemo.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -77,7 +78,30 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -108,13 +132,84 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="swagger\css\api-explorer.css" />
+    <Content Include="swagger\css\index.css" />
+    <Content Include="swagger\css\print.css" />
+    <Content Include="swagger\css\reset.css" />
+    <Content Include="swagger\css\screen.css" />
+    <Content Include="swagger\css\standalone.css" />
+    <Content Include="swagger\css\typography.css" />
+    <Content Include="swagger\fonts\droid-sans-v6-latin-700.svg" />
+    <Content Include="swagger\fonts\droid-sans-v6-latin-regular.svg" />
+    <Content Include="swagger\images\explorer_icons.png" />
+    <Content Include="swagger\images\favicon-16x16.png" />
+    <Content Include="swagger\images\favicon-32x32.png" />
+    <Content Include="swagger\images\favicon.ico" />
+    <Content Include="swagger\images\logo_small.png" />
+    <Content Include="swagger\images\pet_store_api.png" />
+    <Content Include="swagger\images\senodio.png" />
+    <Content Include="swagger\images\Swagger_explorer.png" />
+    <Content Include="swagger\images\Swagger_explorer_min.png" />
+    <Content Include="swagger\images\throbber.gif" />
+    <Content Include="swagger\images\wordnik_api.png" />
+    <Content Include="swagger\index.html" />
+    <Content Include="swagger\lib\backbone-min.js" />
+    <Content Include="swagger\lib\bootstrap.min.js" />
+    <Content Include="swagger\lib\handlebars-2.0.0.js" />
+    <Content Include="swagger\lib\highlight.7.3.pack.js" />
+    <Content Include="swagger\lib\jquery-1.8.0.min.js" />
+    <Content Include="swagger\lib\jquery.ba-bbq.min.js" />
+    <Content Include="swagger\lib\jquery.slideto.min.js" />
+    <Content Include="swagger\lib\jquery.wiggle.min.js" />
+    <Content Include="swagger\lib\marked.js" />
+    <Content Include="swagger\lib\swagger-oauth.js" />
+    <Content Include="swagger\lib\underscore-min.js" />
+    <Content Include="swagger\o2c.html" />
+    <Content Include="swagger\swagger-ui.js" />
+    <Content Include="swagger\swagger-ui.min.js" />
+    <Content Include="Views\Default\css\api-explorer.css" />
+    <Content Include="Views\Default\css\index.css" />
+    <Content Include="Views\Default\css\print.css" />
+    <Content Include="Views\Default\css\reset.css" />
+    <Content Include="Views\Default\css\screen.css" />
+    <Content Include="Views\Default\css\standalone.css" />
+    <Content Include="Views\Default\css\typography.css" />
+    <Content Include="Views\Default\fonts\droid-sans-v6-latin-700.svg" />
+    <Content Include="Views\Default\fonts\droid-sans-v6-latin-regular.svg" />
+    <Content Include="Views\Default\images\explorer_icons.png" />
+    <Content Include="Views\Default\images\favicon-16x16.png" />
+    <Content Include="Views\Default\images\favicon-32x32.png" />
+    <Content Include="Views\Default\images\favicon.ico" />
+    <Content Include="Views\Default\images\logo_small.png" />
+    <Content Include="Views\Default\images\pet_store_api.png" />
+    <Content Include="Views\Default\images\senodio.png" />
+    <Content Include="Views\Default\images\Swagger_explorer.png" />
+    <Content Include="Views\Default\images\Swagger_explorer_min.png" />
+    <Content Include="Views\Default\images\throbber.gif" />
+    <Content Include="Views\Default\images\wordnik_api.png" />
+    <Content Include="Views\Default\lib\backbone-min.js" />
+    <Content Include="Views\Default\lib\bootstrap.min.js" />
+    <Content Include="Views\Default\lib\handlebars-2.0.0.js" />
+    <Content Include="Views\Default\lib\highlight.7.3.pack.js" />
+    <Content Include="Views\Default\lib\jquery-1.8.0.min.js" />
+    <Content Include="Views\Default\lib\jquery.ba-bbq.min.js" />
+    <Content Include="Views\Default\lib\jquery.slideto.min.js" />
+    <Content Include="Views\Default\lib\jquery.wiggle.min.js" />
+    <Content Include="Views\Default\lib\marked.js" />
+    <Content Include="Views\Default\lib\swagger-oauth.js" />
+    <Content Include="Views\Default\lib\underscore-min.js" />
+    <Content Include="Views\Default\o2c.html" />
+    <Content Include="Views\Default\swagger-ui.js" />
+    <Content Include="Views\Default\swagger-ui.min.js" />
     <Content Include="Web.config" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -126,6 +221,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\WebApiDemoMCC.pubxml" />
+    <Content Include="swagger\fonts\droid-sans-v6-latin-700.eot" />
+    <Content Include="swagger\fonts\droid-sans-v6-latin-700.ttf" />
+    <Content Include="swagger\fonts\droid-sans-v6-latin-700.woff" />
+    <Content Include="swagger\fonts\droid-sans-v6-latin-700.woff2" />
+    <Content Include="swagger\fonts\droid-sans-v6-latin-regular.eot" />
+    <Content Include="swagger\fonts\droid-sans-v6-latin-regular.ttf" />
+    <Content Include="swagger\fonts\droid-sans-v6-latin-regular.woff" />
+    <Content Include="swagger\fonts\droid-sans-v6-latin-regular.woff2" />
+    <Content Include="swagger\lib\underscore-min.map" />
+    <Content Include="Views\Default\fonts\droid-sans-v6-latin-700.eot" />
+    <Content Include="Views\Default\fonts\droid-sans-v6-latin-700.ttf" />
+    <Content Include="Views\Default\fonts\droid-sans-v6-latin-700.woff" />
+    <Content Include="Views\Default\fonts\droid-sans-v6-latin-700.woff2" />
+    <Content Include="Views\Default\fonts\droid-sans-v6-latin-regular.eot" />
+    <Content Include="Views\Default\fonts\droid-sans-v6-latin-regular.ttf" />
+    <Content Include="Views\Default\fonts\droid-sans-v6-latin-regular.woff" />
+    <Content Include="Views\Default\fonts\droid-sans-v6-latin-regular.woff2" />
+    <Content Include="Views\Default\lib\underscore-min.map" />
+    <Content Include="Views\Default\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

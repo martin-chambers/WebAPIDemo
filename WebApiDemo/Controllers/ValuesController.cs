@@ -21,6 +21,10 @@ namespace WebApiDemo.Controllers
         public ValuesController() : this(new ValuesRepository()){}
 
         // GET api/values
+        /// <summary>
+        /// Get the values
+        /// </summary>
+        /// <remarks>remarks</remarks>
         public async Task<IEnumerable<Value>> Get()
         {
             IEnumerable<Value> values = null; ;
@@ -37,6 +41,11 @@ namespace WebApiDemo.Controllers
         }
 
         // GET api/values/568b9cbefbfd383c642a6dde/
+        /// <summary>
+        /// Get a value by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Value> Get(string id)
         {
             Value rv = null;
@@ -53,6 +62,13 @@ namespace WebApiDemo.Controllers
         }
 
         // POST api/values/ (+payload)
+        /// <summary>
+        /// Create a value
+        /// </summary>
+        /// <remarks>These are implementation remarks</remarks>
+        /// <param name="value">
+        /// <Description>This is a parameter description</Description>
+        /// </param>
         [System.Web.Http.HttpPost]
         public async Task<HttpResponseMessage> Insert([FromBody]Value value)
         {
@@ -74,6 +90,10 @@ namespace WebApiDemo.Controllers
         }
 
         // PUT api/values/ (+payload)
+        /// <summary>
+        /// Update a value
+        /// </summary>
+        /// <param name="value"></param>
         [System.Web.Http.HttpPut]
         public async Task<HttpResponseMessage> Update([FromBody]Value value)
         {
@@ -105,6 +125,10 @@ namespace WebApiDemo.Controllers
         }
 
         // DELETE api/values/568b9cbefbfd383c642a6dde/
+        /// <summary>
+        /// Delete a value
+        /// </summary>
+        /// <param name="value"></param>
         [System.Web.Http.HttpDelete]
         public async Task<HttpResponseMessage> Delete(string id)
         { 

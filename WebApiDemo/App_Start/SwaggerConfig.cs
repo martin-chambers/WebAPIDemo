@@ -36,7 +36,8 @@ namespace WebApiDemo
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "WebApiDemo");
+                        c.SingleApiVersion("v1", "WebApiDemo")
+                            .Description("A sample API for learning about Web API");
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be
@@ -162,7 +163,7 @@ namespace WebApiDemo
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
                         //
-                        //c.IncludeXmlComments(GetXmlCommentsPath());
+                        c.IncludeXmlComments(@"C:\git\WebApiDemo\WebApiDemo\bin\WebApiDemo.XML");
 
                         // In contrast to WebApi, Swagger 2.0 does not include the query string component when mapping a URL
                         // to an action. As a result, Swashbuckle will raise an exception if it encounters multiple actions
@@ -172,9 +173,9 @@ namespace WebApiDemo
                         //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                         // ***** Uncomment the following to enable the swagger UI *****
                         
-                            })
-                        .EnableSwaggerUi(c =>
-                            {
+//                            })
+ //                       .EnableSwaggerUi(c =>
+   //                         {
                         
                         // Use the "InjectStylesheet" option to enrich the UI with one or more additional CSS stylesheets.
                         // The file must be included in your project as an "Embedded Resource", and then the resource's
