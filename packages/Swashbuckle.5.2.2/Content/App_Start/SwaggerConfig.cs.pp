@@ -1,15 +1,11 @@
-﻿using System.Globalization;
-using System.Linq;
-using System.Web.Http;
-using System.Web.Http.Description;
-using Swashbuckle.Application;
-using Swashbuckle.Swagger;
+﻿using System.Web.Http;
 using WebActivatorEx;
-using WebApiDemo;
+using $rootnamespace$;
+using Swashbuckle.Application;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace WebApiDemo
+namespace $rootnamespace$
 {
     public class SwaggerConfig
     {
@@ -17,7 +13,7 @@ namespace WebApiDemo
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;
 
-            GlobalConfiguration.Configuration
+            GlobalConfiguration.Configuration 
                 .EnableSwagger(c =>
                     {
                         // By default, the service root url is inferred from the request used to access the docs.
@@ -36,8 +32,7 @@ namespace WebApiDemo
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "WebApiDemo")
-                            .Description("A demonstration of Web API using MongoDB and Swagger");
+                        c.SingleApiVersion("v1", "$rootnamespace$");
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be
@@ -96,6 +91,13 @@ namespace WebApiDemo
                         //
                         //c.OrderActionGroupsBy(new DescendingAlphabeticComparer());
 
+                        // If you annotate Controllers and API Types with
+                        // Xml comments (http://msdn.microsoft.com/en-us/library/b2s063f7(v=vs.110).aspx), you can incorporate
+                        // those comments into the generated docs and UI. You can enable this by providing the path to one or
+                        // more Xml comment files.
+                        //
+                        //c.IncludeXmlComments(GetXmlCommentsPath());
+
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
                         // This is supported through the "MapType" and "SchemaFilter" options:
@@ -145,11 +147,6 @@ namespace WebApiDemo
                         // to execute the operation
                         //
                         //c.OperationFilter<AssignOAuth2SecurityRequirements>();
-                        //
-                        // Set filter to eliminate duplicate operation ids from being generated
-                        // when there are multiple operations with the same verb in the API.
-                        //
-                        c.OperationFilter<IncludeParameterNamesInOperationIdFilter>();
 
                         // Post-modify the entire Swagger document by wiring up one or more Document filters.
                         // This gives full control to modify the final SwaggerDocument. You should have a good understanding of
@@ -158,87 +155,70 @@ namespace WebApiDemo
                         //
                         //c.DocumentFilter<ApplyDocumentVendorExtensions>();
 
-                        // If you annonate Controllers and API Types with
-                        // Xml comments (http://msdn.microsoft.com/en-us/library/b2s063f7(v=vs.110).aspx), you can incorporate
-                        // those comments into the generated docs and UI. You can enable this by providing the path to one or
-                        // more Xml comment files.
-                        //
-                        c.IncludeXmlComments(string.Format(@"{0}\bin\WebApiDemo.XML", System.AppDomain.CurrentDomain.BaseDirectory));
-
                         // In contrast to WebApi, Swagger 2.0 does not include the query string component when mapping a URL
                         // to an action. As a result, Swashbuckle will raise an exception if it encounters multiple actions
                         // with the same path (sans query string) and HTTP method. You can workaround this by providing a
                         // custom strategy to pick a winner or merge the descriptions for the purposes of the Swagger docs 
                         //
                         //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-                        // ***** Uncomment the following to enable the swagger UI *****
-                        //})
-                        //  .EnableSwaggerUi(c =>
-                        //{
 
-                            // Use the "InjectStylesheet" option to enrich the UI with one or more additional CSS stylesheets.
-                            // The file must be included in your project as an "Embedded Resource", and then the resource's
-                            // "Logical Name" is passed to the method as shown below.
-                            //
-                            //c.InjectStylesheet(containingAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testStyles1.css");
+                        // Wrap the default SwaggerGenerator with additional behavior (e.g. caching) or provide an
+                        // alternative implementation for ISwaggerProvider with the CustomProvider option.
+                        //
+                        //c.CustomProvider((defaultProvider) => new CachingSwaggerProvider(defaultProvider));
+                    })
+                .EnableSwaggerUi(c =>
+                    {
+                        // Use the "InjectStylesheet" option to enrich the UI with one or more additional CSS stylesheets.
+                        // The file must be included in your project as an "Embedded Resource", and then the resource's
+                        // "Logical Name" is passed to the method as shown below.
+                        //
+                        //c.InjectStylesheet(containingAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testStyles1.css");
 
-                            // Use the "InjectJavaScript" option to invoke one or more custom JavaScripts after the swagger-ui
-                            // has loaded. The file must be included in your project as an "Embedded Resource", and then the resource's
-                            // "Logical Name" is passed to the method as shown above.
-                            //
-                            //c.InjectJavaScript(thisAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testScript1.js");
+                        // Use the "InjectJavaScript" option to invoke one or more custom JavaScripts after the swagger-ui
+                        // has loaded. The file must be included in your project as an "Embedded Resource", and then the resource's
+                        // "Logical Name" is passed to the method as shown above.
+                        //
+                        //c.InjectJavaScript(thisAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testScript1.js");
 
-                            // The swagger-ui renders boolean data types as a dropdown. By default, it provides "true" and "false"
-                            // strings as the possible choices. You can use this option to change these to something else,
-                            // for example 0 and 1.
-                            //
-                            //c.BooleanValues(new[] { "0", "1" });
+                        // The swagger-ui renders boolean data types as a dropdown. By default, it provides "true" and "false"
+                        // strings as the possible choices. You can use this option to change these to something else,
+                        // for example 0 and 1.
+                        //
+                        //c.BooleanValues(new[] { "0", "1" });
 
-                            // Use this option to control how the Operation listing is displayed.
-                            // It can be set to "None" (default), "List" (shows operations for each resource),
-                            // or "Full" (fully expanded: shows operations and their details).
-                            //
-                            //c.DocExpansion(DocExpansion.List);
+                        // By default, swagger-ui will validate specs against swagger.io's online validator and display the result
+                        // in a badge at the bottom of the page. Use these options to set a different validator URL or to disable the
+                        // feature entirely.
+                        //c.SetValidatorUrl("http://localhost/validator");
+                        //c.DisableValidator();
 
-                            // Use the CustomAsset option to provide your own version of assets used in the swagger-ui.
-                            // It's typically used to instruct Swashbuckle to return your version instead of the default
-                            // when a request is made for "index.html". As with all custom content, the file must be included
-                            // in your project as an "Embedded Resource", and then the resource's "Logical Name" is passed to
-                            // the method as shown below.
-                            //
-                            //c.CustomAsset("index", containingAssembly, "YourWebApiProject.SwaggerExtensions.index.html");
+                        // Use this option to control how the Operation listing is displayed.
+                        // It can be set to "None" (default), "List" (shows operations for each resource),
+                        // or "Full" (fully expanded: shows operations and their details).
+                        //
+                        //c.DocExpansion(DocExpansion.List);
 
-                            // If your API has multiple versions and you've applied the MultipleApiVersions setting
-                            // as described above, you can also enable a select box in the swagger-ui, that displays
-                            // a discovery URL for each version. This provides a convenient way for users to browse documentation
-                            // for different API versions.
-                            //
-                            //c.EnableDiscoveryUrlSelector();
+                        // Use the CustomAsset option to provide your own version of assets used in the swagger-ui.
+                        // It's typically used to instruct Swashbuckle to return your version instead of the default
+                        // when a request is made for "index.html". As with all custom content, the file must be included
+                        // in your project as an "Embedded Resource", and then the resource's "Logical Name" is passed to
+                        // the method as shown below.
+                        //
+                        //c.CustomAsset("index", containingAssembly, "YourWebApiProject.SwaggerExtensions.index.html");
 
-                            // If your API supports the OAuth2 Implicit flow, and you've described it correctly, according to
-                            // the Swagger 2.0 specification, you can enable UI support as shown below.
-                            //
-                            //c.EnableOAuth2Support("test-client-id", "test-realm", "Swagger UI");
-                        });
-        }
-    }
+                        // If your API has multiple versions and you've applied the MultipleApiVersions setting
+                        // as described above, you can also enable a select box in the swagger-ui, that displays
+                        // a discovery URL for each version. This provides a convenient way for users to browse documentation
+                        // for different API versions.
+                        //
+                        //c.EnableDiscoveryUrlSelector();
 
-    internal class IncludeParameterNamesInOperationIdFilter : IOperationFilter
-    {
-        public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
-        {
-            if (operation.parameters != null)
-            {
-                // Select the capitalized parameter names
-                var parameters = operation.parameters.Select(
-                    p => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(p.name));
-
-                // Set the operation id to match the format "OperationByParam1AndParam2"
-                operation.operationId = string.Format(
-                    "{0}By{1}",
-                    operation.operationId,
-                    string.Join("And", parameters));
-            }
+                        // If your API supports the OAuth2 Implicit flow, and you've described it correctly, according to
+                        // the Swagger 2.0 specification, you can enable UI support as shown below.
+                        //
+                        //c.EnableOAuth2Support("test-client-id", "test-realm", "Swagger UI");
+                    });
         }
     }
 }

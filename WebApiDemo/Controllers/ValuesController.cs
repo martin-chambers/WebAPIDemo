@@ -24,7 +24,7 @@ namespace WebApiDemo.Controllers
         /// <summary>
         /// Get the values
         /// </summary>
-        /// <remarks>remarks</remarks>
+        /// <remarks>The endpoint returns a Json representation of the object collection</remarks>
         public async Task<IEnumerable<Value>> Get()
         {
             IEnumerable<Value> values = null; ;
@@ -71,6 +71,7 @@ namespace WebApiDemo.Controllers
         /// <param name="value">
         /// <Description>A Json representation of a Value object not including the Id which is assigned on creation in the data store</Description>
         /// </param>
+        /// <response code="201">Value created</response>
         [System.Web.Http.HttpPost]
         public async Task<HttpResponseMessage> Insert([FromBody]Value value)
         {
@@ -99,6 +100,7 @@ namespace WebApiDemo.Controllers
         /// <param name="value">
         /// <Description>A Json representation of a Value object including the Id</Description>
         /// </param>
+        /// <response code="200">Value updated</response>
         [System.Web.Http.HttpPut]
         public async Task<HttpResponseMessage> Update([FromBody]Value value)
         {
@@ -136,6 +138,7 @@ namespace WebApiDemo.Controllers
         /// <param name="id">
         /// <Description>A SHA-1 string id</Description>
         /// </param>
+        /// <response code="204">Value deleted</response>
         [System.Web.Http.HttpDelete]
         public async Task<HttpResponseMessage> Delete(string id)
         { 
@@ -161,7 +164,7 @@ namespace WebApiDemo.Controllers
                         return Request.CreateResponse(HttpStatusCode.InternalServerError);
                     }
                 }
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.NoContent);
             }
             catch (Exception ex)
             {
