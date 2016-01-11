@@ -44,8 +44,10 @@ namespace WebApiDemo.Controllers
         /// <summary>
         /// Get a value by id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <remarks>The endpoint returns a Json representation of the object identified by the SHA-1 Id</remarks>
+        /// <param name="id">
+        /// <Description>A SHA-1 string id</Description>
+        /// </param>
         public async Task<Value> Get(string id)
         {
             Value rv = null;
@@ -54,20 +56,20 @@ namespace WebApiDemo.Controllers
                 rv = await repository.GetValueAsync(id);
                 return rv;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return rv;
-            }            
+            }
         }
 
         // POST api/values/ (+payload)
         /// <summary>
         /// Create a value
         /// </summary>
-        /// <remarks>These are implementation remarks</remarks>
+        /// <remarks>The endpoint returns a Json representation of the object created in the data source</remarks>
         /// <param name="value">
-        /// <Description>This is a parameter description</Description>
+        /// <Description>A Json representation of a Value object not including the Id which is assigned on creation in the data store</Description>
         /// </param>
         [System.Web.Http.HttpPost]
         public async Task<HttpResponseMessage> Insert([FromBody]Value value)
@@ -93,7 +95,10 @@ namespace WebApiDemo.Controllers
         /// <summary>
         /// Update a value
         /// </summary>
-        /// <param name="value"></param>
+        /// <remarks>The endpoint returns a Json representation of the object as updated in the data source</remarks>
+        /// <param name="value">
+        /// <Description>A Json representation of a Value object including the Id</Description>
+        /// </param>
         [System.Web.Http.HttpPut]
         public async Task<HttpResponseMessage> Update([FromBody]Value value)
         {
@@ -128,7 +133,9 @@ namespace WebApiDemo.Controllers
         /// <summary>
         /// Delete a value
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="id">
+        /// <Description>A SHA-1 string id</Description>
+        /// </param>
         [System.Web.Http.HttpDelete]
         public async Task<HttpResponseMessage> Delete(string id)
         { 
