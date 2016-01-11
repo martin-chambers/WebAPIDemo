@@ -10,6 +10,9 @@ namespace WebApiDemo.Controllers
     {
         public ActionResult Index()
         {
+            // The steps for customising the Swagger UI are set out in this blog:
+            // http://brazilianldsjag.com/2015/07/24/how-to-add-swagger-ui-to-web-api-2/
+            ViewBag.Title = "WebApiDemo";
             return View();
         }
     }

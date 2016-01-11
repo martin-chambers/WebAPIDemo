@@ -132,47 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="swagger\css\api-explorer.css" />
-    <Content Include="swagger\css\index.css" />
-    <Content Include="swagger\css\print.css" />
-    <Content Include="swagger\css\reset.css" />
-    <Content Include="swagger\css\screen.css" />
-    <Content Include="swagger\css\standalone.css" />
-    <Content Include="swagger\css\typography.css" />
-    <Content Include="swagger\fonts\droid-sans-v6-latin-700.svg" />
-    <Content Include="swagger\fonts\droid-sans-v6-latin-regular.svg" />
-    <Content Include="swagger\images\explorer_icons.png" />
-    <Content Include="swagger\images\favicon-16x16.png" />
-    <Content Include="swagger\images\favicon-32x32.png" />
-    <Content Include="swagger\images\favicon.ico" />
-    <Content Include="swagger\images\logo_small.png" />
-    <Content Include="swagger\images\pet_store_api.png" />
-    <Content Include="swagger\images\senodio.png" />
-    <Content Include="swagger\images\Swagger_explorer.png" />
-    <Content Include="swagger\images\Swagger_explorer_min.png" />
-    <Content Include="swagger\images\throbber.gif" />
-    <Content Include="swagger\images\wordnik_api.png" />
-    <Content Include="swagger\index.html" />
-    <Content Include="swagger\lib\backbone-min.js" />
-    <Content Include="swagger\lib\bootstrap.min.js" />
-    <Content Include="swagger\lib\handlebars-2.0.0.js" />
-    <Content Include="swagger\lib\highlight.7.3.pack.js" />
-    <Content Include="swagger\lib\jquery-1.8.0.min.js" />
-    <Content Include="swagger\lib\jquery.ba-bbq.min.js" />
-    <Content Include="swagger\lib\jquery.slideto.min.js" />
-    <Content Include="swagger\lib\jquery.wiggle.min.js" />
-    <Content Include="swagger\lib\marked.js" />
-    <Content Include="swagger\lib\swagger-oauth.js" />
-    <Content Include="swagger\lib\underscore-min.js" />
-    <Content Include="swagger\o2c.html" />
-    <Content Include="swagger\swagger-ui.js" />
-    <Content Include="swagger\swagger-ui.min.js" />
-    <Content Include="Views\Default\css\api-explorer.css" />
-    <Content Include="Views\Default\css\index.css" />
     <Content Include="Views\Default\css\print.css" />
     <Content Include="Views\Default\css\reset.css" />
     <Content Include="Views\Default\css\screen.css" />
-    <Content Include="Views\Default\css\standalone.css" />
+    <Content Include="Views\Default\css\style.css" />
     <Content Include="Views\Default\css\typography.css" />
     <Content Include="Views\Default\fonts\droid-sans-v6-latin-700.svg" />
     <Content Include="Views\Default\fonts\droid-sans-v6-latin-regular.svg" />
@@ -221,15 +184,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\WebApiDemoMCC.pubxml" />
-    <Content Include="swagger\fonts\droid-sans-v6-latin-700.eot" />
-    <Content Include="swagger\fonts\droid-sans-v6-latin-700.ttf" />
-    <Content Include="swagger\fonts\droid-sans-v6-latin-700.woff" />
-    <Content Include="swagger\fonts\droid-sans-v6-latin-700.woff2" />
-    <Content Include="swagger\fonts\droid-sans-v6-latin-regular.eot" />
-    <Content Include="swagger\fonts\droid-sans-v6-latin-regular.ttf" />
-    <Content Include="swagger\fonts\droid-sans-v6-latin-regular.woff" />
-    <Content Include="swagger\fonts\droid-sans-v6-latin-regular.woff2" />
-    <Content Include="swagger\lib\underscore-min.map" />
     <Content Include="Views\Default\fonts\droid-sans-v6-latin-700.eot" />
     <Content Include="Views\Default\fonts\droid-sans-v6-latin-700.ttf" />
     <Content Include="Views\Default\fonts\droid-sans-v6-latin-700.woff" />
@@ -238,8 +192,8 @@
     <Content Include="Views\Default\fonts\droid-sans-v6-latin-regular.ttf" />
     <Content Include="Views\Default\fonts\droid-sans-v6-latin-regular.woff" />
     <Content Include="Views\Default\fonts\droid-sans-v6-latin-regular.woff2" />
-    <Content Include="Views\Default\lib\underscore-min.map" />
     <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Default\lib\underscore-min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
